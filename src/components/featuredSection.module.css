@@ -1,0 +1,45 @@
+
+.mainCnt
+{
+    margin: 30px;
+    margin-bottom: 50px;
+   justify-content: space-around;
+    
+}
+.heading
+{
+    font-size: x-large;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+    margin-bottom: 10px;
+}
+.listCnt
+{
+    display: flex;
+    justify-content: space-between;
+}
+.imgCnt
+{
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    overflow: hidden;
+}
+.btnCnt
+{
+    margin-left: 20px;
+    margin-top: 5px;
+    width: 100px;
+    height: 30px;
+   
+}
+.btn{
+    align-content: center;
+    border-radius: 5px;
+    padding: 5px;
+    width: 100px;
+    height: 30px;
+    font-size: 20px;
+    background: #00d4ff;
+    text-align: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+}
