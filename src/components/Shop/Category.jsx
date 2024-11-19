@@ -20,7 +20,7 @@ export default function Category({setProducts}){
     // Replace with your API endpoint
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/category'); // API endpoint
+        const response = await fetch('/api/category'); // API endpoint
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -43,7 +43,7 @@ export default function Category({setProducts}){
     setSelectedCategory(categoryId); // Set the selected category
     // Fetch products for the selected category
     try {
-      const response = await fetch(`http://localhost:3000/api/products/category/${categoryId}`);
+      const response = await fetch(`/api/products/category/${categoryId}`);
       if (!response.ok) {
         throw new Error('Failed to fetch products');
       }

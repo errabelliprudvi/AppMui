@@ -21,7 +21,7 @@ import { useState, useEffect } from "react";
             // Replace with your API endpoint
             const fetchData = async () => {
               try {
-                const response = await fetch(`http://localhost:3000/api/orders/user/${userId}`); // API endpoint
+                const response = await fetch(`api/orders/user/${userId}`); // API endpoint
                 if (!response.ok) {
                   throw new Error('Network response was not ok');
                 }
