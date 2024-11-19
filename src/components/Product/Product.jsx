@@ -49,7 +49,7 @@ export default function Product()
     const handleAddToCart = async (item) => {
         console.log(item._id)
         try {
-          const response = await fetch('http://localhost:3000/api/cart', {
+          const response = await fetch('/api/cart', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -88,7 +88,7 @@ export default function Product()
             }
         
         try {
-          const response = await fetch('http://localhost:3000/api/orders', {
+          const response = await fetch('/api/orders', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

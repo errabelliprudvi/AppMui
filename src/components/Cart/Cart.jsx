@@ -26,7 +26,7 @@ export default function Cart({userId})
 
    const fetchData = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/api/cart/${userId}`); // API endpoint
+      const response = await fetch(`/api/cart/${userId}`); // API endpoint
       if (!response.ok) {
         if(response.status==404)
         {
@@ -51,7 +51,7 @@ export default function Cart({userId})
       // Replace with your API endpoint
       const fetchData = async () => {
         try {
-          const response = await fetch(`http://localhost:3000/api/cart/${userId}`); // API endpoint
+          const response = await fetch(`/api/cart/${userId}`); // API endpoint
           if (!response.ok) {
             if(response.status==404)
             {
@@ -86,7 +86,7 @@ export default function Cart({userId})
         )
         );
         try {
-          const response = await fetch('http://localhost:3000/api/orders', {
+          const response = await fetch('/api/orders', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -122,7 +122,7 @@ export default function Cart({userId})
 
       const handleRemoveFromCart = async (item) => {
         try {
-          const response = await fetch('http://localhost:3000/api/cart/item', {
+          const response = await fetch('api/cart/item', {
             method: 'DELETE',
             headers: {
               'Content-Type': 'application/json',
@@ -152,7 +152,7 @@ export default function Cart({userId})
 
       const clearCart = async () => {
         try {
-          const response = await fetch(`http://localhost:3000/api/cart/${userId}`, {
+          const response = await fetch(`/api/cart/${userId}`, {
             method: 'DELETE',
             headers: {
               'Content-Type': 'application/json',

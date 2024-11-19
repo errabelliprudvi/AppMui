@@ -32,7 +32,7 @@ const AuthPage = ({ setIsAuthenticated ,setUserId}) => {
 
   const signUp = async () => {
     try {
-      const response = await fetch("http://localhost:3000/user/signup", {
+      const response = await fetch("/user/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -65,7 +65,7 @@ const AuthPage = ({ setIsAuthenticated ,setUserId}) => {
 
   const login = async () => {
     try {
-      const response = await fetch("http://localhost:3000/user/login", {
+      const response = await fetch("/user/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
