@@ -17,7 +17,7 @@ export const UserProvider = ({ children }) => {
 
     setLoading(true);
     try {
-      const response = await fetch(`http://localhost:3000/api/cart/${user}`);
+      const response = await fetch(`/api/cart/${user}`);
       if (!response.ok) {
         if (response.status === 404) {
           console.log("Your Cart is Empty...");

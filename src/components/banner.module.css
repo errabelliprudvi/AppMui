@@ -1,78 +1,85 @@
-
-
-/* Style for the outer parent container */
+/* Style for the banner container */
 .bannerContainer {
-    
-    justify-content: center; /* Horizontally center the image container */
-    align-items: center; /* Vertically center the image container */
-    
-    /* Full width or adjust as needed */
-    position: relative;
-    background-color: #f0f0f0; /* Example background */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
-    margin: 20px;
-    border-radius: 15px;
-    overflow: hidden;
-  }
-
-.banner{
-    
-    display: flex;
-    justify-content: center;
-    margin-top: 0px;
+  display: flex;
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  position: relative;
+  width: 100%; /* Full width */
+  height: 400px; /* Fixed height, adjust if needed */
+  background-color: #f0f0f0;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+  overflow: hidden;
 }
-  
-  /* Style for the image container */
-  .imgContainer {
-   
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    height:400px ;
-    max-width: 100%; /* Ensure image container does not exceed parent width */
-    overflow: hidden;
+
+/* Style for the image container */
+.imgContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Style for the image */
+.imgContainer img {
+  width: 100%; /* Ensure image covers the container width */
+  height: 100%; /* Ensure image covers the container height */
+  object-fit: cover; /* Maintain aspect ratio and cover the container */
+  transition: opacity 1s ease-in-out; /* Smooth fade effect during transitions */
+}
+
+/* CSS for the indicators container */
+.banner-indicators {
+  position: absolute;
+  bottom: 20px; /* Adjust as needed */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* Space between indicators */
+}
+
+/* CSS for individual indicator */
+.indicator {
+  width: 15px; /* Adjust size */
+  height: 15px;
+  border-radius: 50%; /* Circle shape */
+  background-color: rgba(255, 255, 255, 0.5); /* Transparent by default */
+  cursor: pointer;
+  transition: background-color 0.3s; /* Smooth hover effect */
+}
+
+/* Active indicator */
+.indicator.active {
+  background-color: rgba(255, 255, 255, 0.9); /* Highlighted indicator */
+}
+
+/* Hover effect for indicators */
+.indicator:hover {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .bannerContainer {
+      height: 300px; /* Reduce height for smaller screens */
   }
-  
-  /* Style for the image */
-  .imgContainer img {
-   /* transition: opacity 3s ease-in-out;*/
-    max-width: 100%; /* Responsive image */
-    max-height: 100%; /* Maintain aspect ratio */
-   /* overflow: hidden;*/
-    
-  }
-  
 
-
-
-
-  /* CSS for the indicators container */
-  .banner-indicators {
-    position: absolute;
-    bottom: 10px; /* Position indicators 10px from the bottom of the banner */
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    justify-content: center;
-    gap: 10px; /* Space between each indicator */
-  }
-  
-  /* CSS for individual indicator */
   .indicator {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%; /* Circle shape */
-    background-color: rgba(230, 20, 20, 0.5); /* Transparent white by default */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.3s; /* Smooth transition */
+      width: 12px;
+      height: 12px;
   }
-  
-  /* Active indicator (current slide) */
-  .indicator.active {
-    background-color: rgb(14, 13, 13); /* Fully white when active */
+}
+
+@media (max-width: 480px) {
+  .bannerContainer {
+      height: 200px; /* Further reduce height */
   }
-  
-  /* Hover effect for indicators */
-  .indicator:hover {
-    background-color: rgba(249, 250, 253, 0.8); /* Light up when hovered */
+
+  .indicator {
+      width: 10px;
+      height: 10px;
   }
+}

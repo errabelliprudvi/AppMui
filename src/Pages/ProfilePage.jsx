@@ -1,9 +1,9 @@
 import Profile from '../components/Profile/Profile'
 
-const ProfilePage =()=>
+const ProfilePage =({userId})=>
 (
     <>
-    <Profile/>
+    <Profile userId={userId}/>
     </>
 )
 

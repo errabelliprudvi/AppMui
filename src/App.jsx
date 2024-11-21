@@ -43,7 +43,7 @@ function App() {
     
 
   }}>
-    <Header/>
+    <Header userId={userId}/>
       <Routes>
           
           <Route path="/login" element={<AuthPage setIsAuthenticated={setIsAuthenticated} setUserId={setUserId}/>}/>

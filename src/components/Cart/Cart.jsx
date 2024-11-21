@@ -18,7 +18,6 @@ export default function Cart({userId})
     const [error, setError] = useState(null);
     const[total,setTotal]  = useState(0);
 
-    var sum =0;
 
     //const [selectedCategory, setSelectedCategory] = useState(null); // State for selected category
    // const [products, setProducts] = useState([]); // State for products of selected category
@@ -47,31 +46,35 @@ export default function Cart({userId})
 
 
 
-    useEffect(() => {
-      // Replace with your API endpoint
-      const fetchData = async () => {
-        try {
-          const response = await fetch(`/api/cart/${userId}`); // API endpoint
-          if (!response.ok) {
-            if(response.status==404)
-            {
-              throw new Error('You Cart is Empty...');
-            }
-            
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`/api/cart/${userId}`); // API endpoint
+        if (!response.ok) {
+          if (response.status == 404) {
+            throw new Error('Your Cart is Empty...');
           }
-          const result = await response.json();
-          setCartData(result.items);
-          setItemsInCart(result.items.length ||0)
-          console.log(result)
-        } catch (error) {
-          setError(error.message);
-        } finally {
-          setLoading(false);
         }
-      };
+        const result = await response.json();
+        setCartData(result.items);
+        setItemsInCart(result.items.length || 0);
   
-      fetchData();
-    }, []);
+        // Calculate the total price
+        const calculatedTotal = result.items.reduce((sum, item) => 
+          sum + item.product.price * item.quantity, 0);
+        setTotal(calculatedTotal);
+  
+        console.log(result);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+  
+    fetchData();
+  }, [userId]); // Ensure it runs when userId changes
+  
   
     const handleBuyNow = async (item) => {
         
@@ -184,47 +187,51 @@ export default function Cart({userId})
 
   
     if (loading) return <div>Loading...</div>;
-    if (error) return <div>Error: {error}</div>;
+    if (error) return <div><h3>{error}</h3> </div>;
     
 
 
 
 
     //const items =[{id:"spr123",img:pex,name:"Iphone 16 pro",price:150 ,qnt:2},{id:"spr123",img:pex,name:"Iphone 16 pro",price:150 ,qnt:2},{id:"spr123",img:pex,name:"Iphone 16 pro",price:150 ,qnt:2}]
-    return(
-        <div className={styles.mainCnt}>
-            <div className={styles.itemsListCnt}>
-                {items.map((item)=>
-                     (
-                        <div className={styles.itemCnt}>
-                            <div className={styles.imgCnt}>
-                                <img  className={styles.img} src={`/images/electronics/${item.product.images[0]}`} />
-                              
-                            </div>
-                            <div  className={styles.detailCnt}>
-                                <h3>Name: {item.product.name}</h3>
-                                <h3>Price: $ {item.product.price} </h3>
-                                <h3>Quantity: {item.quantity} </h3>
-                                <h3>Total: $ {item.product.price*item.quantity}</h3>
-                            </div>
-    
-                            <div  className={styles.rmCnt}>
-                            <Button onClick={()=>handleRemoveFromCart(item.product._id)}>Remove</Button>
-                            </div>
-                       </div>
-    
-                    ))}
+    return (
+      <div className={styles.mainCnt}>
+        <div className={styles.itemsListCnt}>
+          {items.map((item) => (
+            <div className={styles.itemCnt} key={item.product._id}>
+              <div className={styles.imgCnt}>
+                <img
+                  className={styles.img}
+                  src={`/images/cart/${item.product.images[0]}`}
+                  alt={item.product.name}
+                />
+              </div>
+              <div className={styles.detailCnt}>
+                <h3>Name: {item.product.name}</h3>
+                <h3>Price: $ {item.product.price}</h3>
+                <h3>Quantity: {item.quantity}</h3>
+                <h3>Total: $ {item.product.price * item.quantity}</h3>
+              </div>
+              <div className={styles.rmCnt}>
+                <Button onClick={() => handleRemoveFromCart(item.product._id)}>
+                  Remove
+                </Button>
+              </div>
             </div>
-            <div className={styles.checkoutCnt}>
-            {items.length==0?
-            <h2>Your Cart is Empty. Add Products to the Cart..<Link to="/shop">Shop</Link></h2>: 
-            <>
-            <Button onClick={()=>{handleBuyNow(items)}}>Check Out</Button>
-            <h2>Total: $ {sum}</h2>
-            </>
-            }
-               
-            </div>
+          ))}
         </div>
-    )
-}
+        <div className={styles.checkoutCnt}>
+          {items.length === 0 ? (
+            <h2>
+              Your Cart is Empty. Add Products to the Cart.. <Link to="/shop">Shop</Link>
+            </h2>
+          ) : (
+            <>
+              <Button onClick={() => handleBuyNow(items)}>Check Out</Button>
+              <h2>Total: $ {total}</h2>
+            </>
+          )}
+        </div>
+      </div>
+    );
+    }

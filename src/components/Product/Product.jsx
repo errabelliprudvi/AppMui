@@ -23,7 +23,7 @@ export default function Product()
       // Replace with your API endpoint
       const fetchData = async () => {
         try {
-          const response = await fetch(`http://localhost:3000/api/products/${id}`); // API endpoint
+          const response = await fetch(`/api/products/${id}`); // API endpoint
           if (!response.ok) {
             throw new Error('Network response was not ok');
           }
@@ -41,8 +41,6 @@ export default function Product()
     }, []);
   
   
-    if (loading) return <div>Loading...</div>;
-    if (error) return <div>Error: {error}</div>;
     
 
 
@@ -124,13 +122,20 @@ export default function Product()
     
 
 
-
+      if (loading) return <div>Loading...</div>;
+      if (error) return <div>Error: {error}</div>;
+      
 
     return(
         <div className={styles.mainCnt}>
             <div className={styles.cardCnt}>
                 <div className={styles.imgCnt}>  
-                    <img className={styles.img} src={`/images/electronics/${product.images[0]}`} />
+                <img 
+  className={styles.img} 
+  src={product.images && product.category ? `/images/${product.category}/${product.images[0]}` : '/images/placeholder.jpg'} 
+  alt={product.name || 'Product Image'} 
+/>
+
                 </div>
                 <div className={styles.cardDetailCnt}>
                    <h3>Product Name: {product.name}</h3> 
